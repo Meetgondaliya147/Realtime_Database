@@ -42,13 +42,13 @@ class _firstState extends State<first> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: (widget.id!=null)?Text("Upadate Data"):Text("Add Data")),
       body: Column(children: [
-        TextField(controller: name,),
-        TextField(controller: contact,),
-        TextField(controller: t1,),
-        TextField(controller: t2,),
-        TextField(controller: t3,),
+        TextField(controller: name,decoration: InputDecoration(hintText: "Enter Name")),
+        TextField(controller: contact,decoration: InputDecoration(hintText: "Enter Contact")),
+        TextField(controller: t1,decoration: InputDecoration(hintText: "Enter Sub-1 Mark ")),
+        TextField(controller: t2,decoration: InputDecoration(hintText: "Enter Sub-2 Mark ")),
+        TextField(controller: t3,decoration: InputDecoration(hintText: "Enter Sub-3 Mark ")),
         ElevatedButton(onPressed: () async {
           if(widget.id!=null){
             DatabaseReference ref = FirebaseDatabase.instance.ref("demo").child(widget.id!);
@@ -70,10 +70,17 @@ class _firstState extends State<first> {
                 "sub1": t1.text,
                 "sub2": t2.text,
                 "sub3": t3.text,
+
+
               }
             });
+            name.text="";
+            contact.text="";
+            t1.text="";
+            t2.text="";
+            t3.text="";
           }
-        }, child: Text("Submit")),
+        }, child: (widget.id!=null)?Text("Upadate Data"):Text("Submit")),
         ElevatedButton(onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return view();

@@ -31,7 +31,7 @@ class _viewState extends State<view> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("View Data")),
       body: StreamBuilder(stream:starCountRef.onValue, builder: (context, snapshot) {
         if(snapshot.connectionState==ConnectionState.active){
           final data = snapshot.data!.snapshot.value;
